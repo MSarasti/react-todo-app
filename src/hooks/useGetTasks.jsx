@@ -25,3 +25,7 @@ const useGetTasks = () => {
 };
 
 export default useGetTasks;
+
+/*export const auxFuntion = () => {
+  console.log("Hello world!");
+};*/
