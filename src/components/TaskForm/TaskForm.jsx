@@ -28,6 +28,7 @@ const TaskForm = () => {
         className="TaskFormContainer__button"
         variant="outlined"
         disabled={!text.length}
+        onClick={handleClick}
       >
         Crear
       </Button>
