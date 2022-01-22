@@ -5,6 +5,7 @@ const AppContext = createContext();
 
 export const AppContextWrapper = ({ children }) => {
   const [tasks, setTasks] = useState([]);
+  const [sortType, setSortType] = useState("asc");
 
   const addTask = (taskName) => {
     const newTask = {
@@ -25,19 +26,26 @@ export const AppContextWrapper = ({ children }) => {
 
   const editTaskTitle = (taskId, newTitle) => {
     const newTasks = tasks.map((task) => {
-      if (taskId === task.id) {
-        const newTask = {
+      if (task.id === taskId) {
+        return {
           ...task,
           title: newTitle,
         };
-        return newTask;
       }
       return task;
     });
     setTasks(newTasks);
   };
 
-  const state = { tasks, setTasks, addTask, deleteTask, editTaskTitle };
+  const state = {
+    tasks,
+    setTasks,
+    addTask,
+    deleteTask,
+    editTaskTitle,
+    sortType,
+    setSortType,
+  };
 
   return <AppContext.Provider value={state}>{children}</AppContext.Provider>;
 };

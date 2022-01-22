@@ -24,7 +24,9 @@ const TaskItem = ({ title, deleteTask, saveTaskTitle }) => {
       sx={{ border: 1, borderColor: "grey.400" }}
     >
       {!isEditable && (
-        <Typography className="TaskItem__title">{title}</Typography>
+        <Typography className="TaskItem__title" noWrap>
+          {title}
+        </Typography>
       )}
       {isEditable && (
         <TextField
