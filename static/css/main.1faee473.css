@@ -1,0 +1,2 @@
+body{font-family:Roboto,sans-serif;margin:0}.TaskFormContainer{display:flex;flex-direction:row;justify-content:space-between;width:100%}.TaskFormContainer__input{width:80%}.TaskFormContainer__button{width:18%}.TasksListContainer{height:50vh;overflow-y:auto;width:100%}.TaskItem__title{width:90%}.TaskItem__delete,.TaskItem__edit,.TaskItem__save{width:5%}.sortItemsForm{width:10em}.AppContainer{align-items:center;display:flex;flex-direction:column;height:100vh;justify-content:center;padding:0 30%}
+/*# sourceMappingURL=main.1faee473.css.map*/
