@@ -1,37 +1,38 @@
 import React, { useContext, useState } from "react";
-import "./SearchBar.scss";
+import "./TaskForm.scss";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import AppContext from "../../store/AppContext";
 
-const SearchBar = () => {
+const TaskForm = () => {
   const [text, setText] = useState("");
   const state = useContext(AppContext);
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     state.addTask(text);
     setText("");
   };
 
   return (
-    <div className="SearchBarContainer">
+    <form className="TaskFormContainer" onSubmit={handleClick}>
       <TextField
-        className="SearchBarContainer__input"
+        className="TaskFormContainer__input"
         label="Nombre de la tarea"
         variant="outlined"
         value={text}
+        required
         onChange={(e) => setText(e.target.value)}
       />
       <Button
-        className="SearchBarContainer__button"
+        className="TaskFormContainer__button"
         variant="outlined"
         disabled={!text.length}
-        onClick={handleClick}
       >
         Crear
       </Button>
-    </div>
+    </form>
   );
 };
 
-export default SearchBar;
+export default TaskForm;

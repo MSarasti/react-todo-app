@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { v1 as uuid } from "uuid";
 
 const AppContext = createContext();
@@ -6,6 +6,12 @@ const AppContext = createContext();
 export const AppContextWrapper = ({ children }) => {
   const [tasks, setTasks] = useState([]);
   const [sortType, setSortType] = useState("asc");
+
+  useEffect(() => {
+    const newTasks = sortTasks(tasks);
+    setTasks(newTasks);
+    //eslint-disable-next-line
+  }, [sortType]);
 
   const addTask = (taskName) => {
     const newTask = {
@@ -16,7 +22,10 @@ export const AppContextWrapper = ({ children }) => {
     };
 
     const newTasks = [...tasks, newTask];
-    setTasks(newTasks);
+
+    const taskWithOrder = sortTasks(newTasks);
+
+    setTasks(taskWithOrder);
   };
 
   const deleteTask = (taskId) => {
@@ -35,6 +44,17 @@ export const AppContextWrapper = ({ children }) => {
       return task;
     });
     setTasks(newTasks);
+  };
+
+  const sortTasks = (tasksToOrder) => {
+    const newTasks = tasksToOrder.map((task) => task);
+    if (sortType === "asc") {
+      newTasks.sort((a, b) => (a.title > b.title ? 1 : -1));
+    } else {
+      newTasks.sort((a, b) => (a.title < b.title ? 1 : -1));
+    }
+
+    return newTasks;
   };
 
   const state = {
